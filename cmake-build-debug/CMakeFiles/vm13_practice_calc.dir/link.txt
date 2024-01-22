@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\vm13_practice_calc.dir/objects.a
-C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\ar.exe qc CMakeFiles\vm13_practice_calc.dir/objects.a @CMakeFiles\vm13_practice_calc.dir\objects1.rsp
-C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\vm13_practice_calc.dir/objects.a -Wl,--no-whole-archive -o vm13_practice_calc.exe -Wl,--out-implib,libvm13_practice_calc.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\vm13_practice_calc.dir\linkLibs.rsp
