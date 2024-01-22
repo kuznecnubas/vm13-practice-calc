@@ -16,8 +16,8 @@ int main() {
     const int maxCountNumbers = 100;
     const int maxCountOperators = 99;
 
-    double per[maxCountNumbers];
-    char op[maxCountOperators];
+    double peremenie[maxCountNumbers];
+    char operators[maxCountOperators];
 
     int count_numbers = 0;
     int count_operators = 0;
@@ -30,12 +30,12 @@ int main() {
             iss.putback(currentChar);
             double number;
             iss >> number;
-            per[count_numbers] = number;
+            peremenie[count_numbers] = number;
             count_numbers++;
         }
         else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
             // Операторы
-            op[count_operators] = currentChar;
+            operators[count_operators] = currentChar;
             count_operators++;
         }
         else{
@@ -47,20 +47,20 @@ int main() {
         cout << "Неверный ввод";
         return 0;
     }
-    double result = per[0];
+    double result = peremenie[0];
     for (int i = 0; i < count_operators; i++) {
-        switch (op[i]) {
+        switch (operators[i]) {
             case '/':
-                result /= per[i + 1];
+                result /= peremenie[i + 1];
                 break;
             case '*':
-                result *= per[i + 1];
+                result *= peremenie[i + 1];
                 break;
             case '+':
-                result += per[i + 1];
+                result += peremenie[i + 1];
                 break;
             case '-':
-                result -= per[i + 1];
+                result -= peremenie[i + 1];
                 break;
         }
     }
