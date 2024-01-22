@@ -64,7 +64,6 @@ int main() {
                 break;
         }
     }
-    cout << "Результат: " << result << endl;
-
+    cout << "Результат: " << result;
     return 0;
 }
