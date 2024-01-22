@@ -5,11 +5,7 @@
 
 using namespace std;
 
-int main() {
-    system("chcp 65001");
-    string mathExpression;
-    cout << "Введите математическое выражение: ";
-    cin >> mathExpression;
+int calculate(string mathExpression){
     istringstream iss(mathExpression);
     char currentChar;
 
@@ -67,7 +63,16 @@ int main() {
                 break;
         }
     }
+    return result;
+}
 
-    cout << "Результат: " << result;
-    return 0;
+int main() {
+    system("chcp 65001");
+    string mathExpression;
+    while (true) {
+        cout << "Введите математическое выражение (exit чтобы выйти): ";
+        cin >> mathExpression;
+        if(mathExpression == "exit") return 0;
+        cout << "Результат: " << calculate(mathExpression) << endl;
+    }
 }
