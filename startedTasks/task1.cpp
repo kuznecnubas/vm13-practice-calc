@@ -22,7 +22,7 @@ int main() {
     int count_operators = 0;
 
     bool correct = true;
-    bool pravilo = false;
+
     while (iss >> currentChar) {
         if (isdigit(currentChar) || currentChar == '.') {
             // Числа
@@ -36,7 +36,6 @@ int main() {
             // Операторы
             operators[count_operators] = currentChar;
             count_operators++;
-            if(currentChar == '*' || currentChar == '/') pravilo = true;
         }
         else{
             correct = false;
@@ -47,52 +46,23 @@ int main() {
         cout << "Неверный ввод";
         return 0;
     }
-    int result;
-    int predresult;
-    if(pravilo){
-        for (int i = 0; i < count_operators; i++) {
-            switch (operators[i]) {
-                case '/':
-                    predresult = peremenie[i] / peremenie[i + 1];
-                    break;
-                case '*':
-                    predresult = peremenie[i] * peremenie[i + 1];
-                    break;
-                default:
-                    break;
-            }
-        }
-        for (int i = 0; i < count_operators; i++) {
-            switch (operators[i]) {
-                case '+':
-                    result = predresult + peremenie[i + 1];
-                    break;
-                case '-':
-                    result = predresult - peremenie[i + 1];
-                    break;
-            }
-        }
-    }else{
-        double result = peremenie[0];
-        for (int i = 0; i < count_operators; i++) {
-            switch (operators[i]) {
-                case '/':
-                    result /= peremenie[i + 1];
-                    break;
-                case '*':
-                    result *= peremenie[i + 1];
-                    break;
-                case '+':
-                    result += peremenie[i + 1];
-                    break;
-                case '-':
-                    result -= peremenie[i + 1];
-                    break;
-            }
+    double result = peremenie[0];
+    for (int i = 0; i < count_operators; i++) {
+        switch (operators[i]) {
+            case '/':
+                result /= peremenie[i + 1];
+                break;
+            case '*':
+                result *= peremenie[i + 1];
+                break;
+            case '+':
+                result += peremenie[i + 1];
+                break;
+            case '-':
+                result -= peremenie[i + 1];
+                break;
         }
     }
-
-
     cout << "Результат: " << result;
     return 0;
 }
