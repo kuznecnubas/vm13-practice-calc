@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <cctype>
+#include <math.h>
 
 using namespace std;
 
@@ -32,7 +33,7 @@ int main() {
             peremenie[count_numbers] = number;
             count_numbers++;
         }
-        else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
+        else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/' || currentChar == '^') {
             // Операторы
             operators[count_operators] = currentChar;
             count_operators++;
@@ -60,6 +61,9 @@ int main() {
                 break;
             case '-':
                 result -= peremenie[i + 1];
+                break;
+            case '^':
+                result = pow(result,peremenie[i + 1]);
                 break;
         }
     }
