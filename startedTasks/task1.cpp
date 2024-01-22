@@ -9,15 +9,14 @@ int main() {
     string mathExpression;
     cout << "Введите математическое выражение: ";
     cin >> mathExpression;
-
     istringstream iss(mathExpression);
     char currentChar;
 
-    const int maxCountNumbers = 100;
-    const int maxCountOperators = 99;
+    const int MAX_COUNT_NUMBERS = 100;
+    const int MAX_COUNT_OPERATORS = 99;
 
-    double peremenie[maxCountNumbers];
-    char operators[maxCountOperators];
+    double peremenie[MAX_COUNT_NUMBERS];
+    char operators[MAX_COUNT_OPERATORS];
 
     int count_numbers = 0;
     int count_operators = 0;
