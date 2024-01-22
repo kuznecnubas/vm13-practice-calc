@@ -67,6 +67,7 @@ int main() {
                 break;
         }
     }
+
     cout << "Результат: " << result;
     return 0;
 }
