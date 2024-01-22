@@ -22,6 +22,8 @@ int main() {
     int count_numbers = 0;
     int count_operators = 0;
 
+    bool correct = true;
+
     while (iss >> currentChar) {
         if (isdigit(currentChar) || currentChar == '.') {
             // Числа
@@ -30,11 +32,20 @@ int main() {
             iss >> number;
             per[count_numbers] = number;
             count_numbers++;
-        } else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
+        }
+        else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
             // Операторы
             op[count_operators] = currentChar;
             count_operators++;
         }
+        else{
+            correct = false;
+            break;
+        }
+    }
+    if (!correct){
+        cout << "Неверный ввод";
+        return 0;
     }
     double result = per[0];
     for (int i = 0; i < count_operators; i++) {
