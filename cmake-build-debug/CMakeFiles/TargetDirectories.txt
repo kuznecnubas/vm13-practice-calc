@@ -1,0 +1,3 @@
+/Users/maxim/CLionProjects/vm13-practice-calc/cmake-build-debug/CMakeFiles/vm13_practice_calc.dir
+/Users/maxim/CLionProjects/vm13-practice-calc/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/maxim/CLionProjects/vm13-practice-calc/cmake-build-debug/CMakeFiles/rebuild_cache.dir
