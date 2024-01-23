@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <cctype>
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 
@@ -13,7 +13,7 @@ bool isOperator(char c) {
 }
 
 // Вычисление результата для двух чисел с учетом оператора
-int applyOperator(int operand1, int operand2, char op) {
+double applyOperator(double operand1, double operand2, char op) {
     switch (op) {
         case '+':
             return operand1 + operand2;
@@ -22,7 +22,7 @@ int applyOperator(int operand1, int operand2, char op) {
         case '*':
             return operand1 * operand2;
         case '^':
-            return pow(operand1,operand2);
+            return pow(operand1, operand2);
         case '/':
             if (operand2 != 0) {
                 return operand1 / operand2;
@@ -37,44 +37,44 @@ int applyOperator(int operand1, int operand2, char op) {
 }
 
 // Разбивка математического выражения на операторы и операнды
-void parseExpression(const string& expression, int operands[], char operators[], int& operandsTop, int& operatorsTop) {
+void parseExpression(const string &expression, double operands[], char operators[], int &operandsTop, int &operatorsTop) {
     istringstream iss(expression);
     char token;
 
     while (iss >> token) {
-        if (isdigit(token)) {
-            int operand;
+        if (isdigit(token) || token == '.') {
+            double operand;
             iss.putback(token);
             iss >> operand;
             operands[++operandsTop] = operand;
         } else if (isOperator(token)) {
             while (operatorsTop >= 0 && operators[operatorsTop] != '(' &&
-                   ((token == '+' || token == '-') || (token == '*' || token == '/') && (operators[operatorsTop] == '*' || operators[operatorsTop] == '/' || operators[operatorsTop] == '^'))) {
+                   ((token == '+' || token == '-') || (token == '*' || token == '/') || (token == '^') && (operators[operatorsTop] == '*' || operators[operatorsTop] == '/' || operators[operatorsTop] == '^'))) {
                 // Выполняем операции, пока верхний оператор имеет более высокий приоритет
-                int operand2 = operands[operandsTop--];
-                int operand1 = operands[operandsTop--];
+                double operand2 = operands[operandsTop--];
+                double operand1 = operands[operandsTop--];
                 char op = operators[operatorsTop--];
                 operands[++operandsTop] = applyOperator(operand1, operand2, op);
             }
-            operators[++operatorsTop] = token; // Добавляем текущий оператор в масив
+            operators[++operatorsTop] = token; // Добавляем текущий оператор в массив
         } else if (token == '(') {
-            operators[++operatorsTop] = token; // Добавляем открывающую скобку в масив
+            operators[++operatorsTop] = token; // Добавляем открывающую скобку в массив
         } else if (token == ')') {
             // Выполняем операции, пока не встретим открывающую скобку
             while (operatorsTop >= 0 && operators[operatorsTop] != '(') {
-                int operand2 = operands[operandsTop--];
-                int operand1 = operands[operandsTop--];
+                double operand2 = operands[operandsTop--];
+                double operand1 = operands[operandsTop--];
                 char op = operators[operatorsTop--];
                 operands[++operandsTop] = applyOperator(operand1, operand2, op);
             }
-            --operatorsTop; // Убираем открывающую скобку из масива
+            --operatorsTop; // Убираем открывающую скобку из массива
         }
     }
 
     // Выполняем оставшиеся операции
     while (operatorsTop >= 0) {
-        int operand2 = operands[operandsTop--];
-        int operand1 = operands[operandsTop--];
+        double operand2 = operands[operandsTop--];
+        double operand1 = operands[operandsTop--];
         char op = operators[operatorsTop--];
         operands[++operandsTop] = applyOperator(operand1, operand2, op);
     }
@@ -92,7 +92,7 @@ int main() {
             return 0; // Завершаем программу при вводе "exit"
         }
 
-        int operands[MAX_SIZE];
+        double operands[MAX_SIZE];
         char operators[MAX_SIZE];
         int operandsTop = -1; // Индекс вершины стека операндов
         int operatorsTop = -1; // Индекс вершины стека операторов
