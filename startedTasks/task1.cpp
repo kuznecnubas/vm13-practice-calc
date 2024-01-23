@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <cctype>
+#include <math.h>
 
 using namespace std;
 
@@ -8,7 +9,7 @@ const int MAX_SIZE = 100; // Максимальный размер массив�
 
 // Проверка, является ли символ оператором
 bool isOperator(char c) {
-    return c == '+' || c == '-' || c == '*' || c == '/';
+    return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
 }
 
 // Вычисление результата для двух чисел с учетом оператора
@@ -20,6 +21,8 @@ int applyOperator(int operand1, int operand2, char op) {
             return operand1 - operand2;
         case '*':
             return operand1 * operand2;
+        case '^':
+            return pow(operand1,operand2);
         case '/':
             if (operand2 != 0) {
                 return operand1 / operand2;
@@ -46,7 +49,7 @@ void parseExpression(const string& expression, int operands[], char operators[],
             operands[++operandsTop] = operand;
         } else if (isOperator(token)) {
             while (operatorsTop >= 0 && operators[operatorsTop] != '(' &&
-                   ((token == '+' || token == '-') || (token == '*' || token == '/') && (operators[operatorsTop] == '*' || operators[operatorsTop] == '/'))) {
+                   ((token == '+' || token == '-') || (token == '*' || token == '/') && (operators[operatorsTop] == '*' || operators[operatorsTop] == '/' || operators[operatorsTop] == '^'))) {
                 // Выполняем операции, пока верхний оператор имеет более высокий приоритет
                 int operand2 = operands[operandsTop--];
                 int operand1 = operands[operandsTop--];
